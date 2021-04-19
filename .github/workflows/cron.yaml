@@ -1,0 +1,14 @@
+name: daily-update
+on:
+  schedule:
+    - cron: '0 10 * * *'
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call iKon API
+        run: |
+          curl \
+          --url 'https://mnvaccinetracker.vercel.app/api/tweet' \
+          --header 'x-mnvaccinetracker-key: ${{ secrets.API_KEY }}'
+

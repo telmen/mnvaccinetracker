@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "node-fetch": "^2.6.1",
+    "twit": "^2.2.11"
+  },
+  "version": "secrets"
+}
