@@ -9,6 +9,6 @@ jobs:
       - name: Call iKon API
         run: |
           curl \
-          --url 'https://mnvaccinetracker.vercel.app/api/tweet' \
+          --url 'https://mnvt.vercel.app/api/tweet' \
           --header 'x-mnvaccinetracker-key: ${{ secrets.API_KEY }}'
 
