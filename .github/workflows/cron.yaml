@@ -8,6 +8,5 @@ jobs:
     steps:
       - name: Trigger serverless function
         run: |
-          curl -s https://mnvt.vercel.app/api/tweet'
-            --header 'x-mnvaccinetracker-key: ${{ secrets.API_KEY }}'
+          curl -s https://mnvt.vercel.app/api/tweet' --header 'x-mnvaccinetracker-key: ${{ secrets.API_KEY }}'
 
