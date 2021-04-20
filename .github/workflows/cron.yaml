@@ -1,12 +1,12 @@
 name: daily-update
 on:
   schedule:
-    - cron: '0 10 * * *'
+    - cron: '30 2 * * *'
 jobs:
   cron:
     runs-on: ubuntu-latest
     steps:
-      - name: Call iKon API
+      - name: Trigger serverless function
         run: |
           curl \
           --url 'https://mnvt.vercel.app/api/tweet' \
