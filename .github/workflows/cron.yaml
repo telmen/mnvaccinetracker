@@ -1,12 +1,11 @@
 name: daily-update
 on:
   schedule:
-    - cron: '00 3 * * *'
+    - cron: '55 2 * * *'
 jobs:
   cron:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger serverless function
         run: |
-          curl -s https://mnvt.vercel.app/api/tweet' --header 'x-mnvaccinetracker-key: ${{ secrets.API_KEY }}'
-
+          curl -s https://mnvt.vercel.app/api/tweet --header 'x-mnvaccinetracker-key: ${{ secrets.API_KEY }}'
