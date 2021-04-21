@@ -8,19 +8,52 @@
   <title>MN Vaccine Tracker</title>
 
   <style>
+    html {
+      height: -webkit-fill-available;
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
         sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       display: grid;
-      min-height: 100vh;
+      color: honeydew;
+      background-color: black;
       place-items: center;
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      padding: 1em;
+    }
+
+    time {
+      font-weight: bold;
+    }
+
+    a {
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a:visited {
+      color: darkorange
+    }
+
+    #logo {
+      position: fixed;
+      top: 0.5em;
+      left: 0.5em;
+      font-size: 2em;
+    }
+
+    ::selection {
+      background-color: darkorange;
     }
   </style>
 </head>
 
 <body>
+  <div id="logo"><a href="https://twitter.com/mnvaccinecount" target="_blank">🇲🇳🤝💉</a></div>
   <main>
-    <h1>Mongolia Vaccine Tracker</h1>
+    <h1>MN Vaccine Tracker</h1>
     <p>
       <a class="github-button" href="https://github.com/telmen/mnvaccinetracker"
         data-icon="octicon-star" aria-label="Star telmen/mnvaccinetracker on GitHub">Star</a>
@@ -28,7 +61,7 @@
     <p>How many people in Mongolia have received the COVID-19 vaccine?</p>
 
     <p>Represents the numbers of fully and first doses vaccinated people, per ikon data. Updated
-      daily.
+      around <time datetime="11:00">11:00</time> daily.
     </p>
 
     <p>
