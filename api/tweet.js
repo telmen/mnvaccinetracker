@@ -29,7 +29,7 @@ const NAMES = {
 };
 
 const MAX_SIZE = 20,
-  MIN_SIZE = 1;
+  MIN_SIZE = 20;
 
 module.exports = async (req, res) => {
   try {
