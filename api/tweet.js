@@ -24,8 +24,8 @@ const Twitter = new Twit({
 const BAR_STYLE = '⣀⣄⣤⣦⣶⣷⣿';
 const DOSES = ['progress', 'completed'];
 const EMOJIS = {
-  completed: '🥈 💉',
-  progress: '🥇 💉',
+  completed: '2️⃣💉',
+  progress: '1️⃣ 💉',
 };
 
 const MAX_SIZE = 20,
@@ -58,7 +58,7 @@ module.exports = async (req, res) => {
       DOSES.forEach((dose) => {
         let percentage = (json[dose] / target) * 100;
         let bar = makeBar(percentage).padEnd(20, BAR_STYLE[0]);
-        status += `${EMOJIS[dose]} ${bar} ${percentage.toFixed(1)}%\n`;
+        status += `${EMOJIS[dose]} ${bar} ${percentage.toFixed(1)}% ✅\n`;
       });
     }
 
