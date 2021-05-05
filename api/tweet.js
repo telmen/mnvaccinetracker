@@ -24,7 +24,7 @@ const Twitter = new Twit({
 const BAR_STYLE = '⣀⣄⣤⣦⣶⣷⣿';
 const DOSES = ['progress', 'completed'];
 const EMOJIS = {
-  completed: '2️⃣💉',
+  completed: '2️⃣ 💉',
   progress: '1️⃣ 💉',
 };
 
