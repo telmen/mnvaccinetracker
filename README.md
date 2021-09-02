@@ -9,4 +9,4 @@ Represents the numbers of fully and first doses vaccinated people, per ikon data
 Please follow [@mnvaccinecount](httsp://twitter.com/mnvaccinecount) on Twitter for daily reports.
 
 
-MIT LICENSE
+**MIT LICENSE**
