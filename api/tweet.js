@@ -22,10 +22,11 @@ const Twitter = new Twit({
 });
 
 const BAR_STYLE = '⣀⣄⣤⣦⣶⣷⣿';
-const DOSES = ['progress', 'completed'];
+const DOSES = ['progress', 'completed', 'd3'];
 const EMOJIS = {
-  completed: '2️⃣ 💉',
   progress: '1️⃣ 💉',
+  completed: '2️⃣ 💉',
+  d3: '3️⃣ 💉',
 };
 
 const MAX_SIZE = 20,
@@ -46,12 +47,12 @@ module.exports = async (req, res) => {
     console.log('Fetching data from ikon');
     const json = await (await fetch(IKON_VACCINE_API_URL)).json();
 
-    const { target } = json;
+    const { target, completed } = json;
 
     // Build a status text
     let status = '';
 
-    if (json?.completed === target) {
+    if (completed === target) {
       // Yay, fully vaccinated.
       status = 'We, Mongolians, have reached the target of fully vaccinated people. 🎉🥳👏';
     } else {
