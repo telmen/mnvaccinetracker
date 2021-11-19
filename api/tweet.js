@@ -59,7 +59,7 @@ module.exports = async (req, res) => {
       DOSES.forEach((dose) => {
         let percentage = (json[dose] / target) * 100;
         let bar = makeBar(percentage).padEnd(20, BAR_STYLE[0]);
-        status += `${EMOJIS[dose]} ${bar} ${percentage.toFixed(1)}% ✅\n`;
+        status += `${EMOJIS[dose]} ${bar} ${percentage.toFixed(1)}%\n`;
       });
     }
 
