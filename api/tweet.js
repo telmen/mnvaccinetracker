@@ -2,6 +2,7 @@ const fetch = require('node-fetch');
 const Twit = require('twit');
 
 const IKON_VACCINE_API_URL = 'https://ikon.mn/api/json/vaccine';
+const E_MONGOLIA_API_URL = 'https://e-mongolia.mn/shared-api/api/covid-stat/daily';
 
 const {
   ACCESS_TOKEN: access_token,
@@ -24,15 +25,15 @@ const Twitter = new Twit({
 const BAR_STYLE = '⣀⣄⣤⣦⣶⣷⣿';
 const DOSES = ['progress', 'completed', 'd3'];
 const EMOJIS = {
-  progress: '1️⃣ 💉',
-  completed: '2️⃣ 💉',
-  d3: '3️⃣ 💉',
+  progress: '1️⃣',
+  completed: '2️⃣',
+  d3: '3️⃣',
 };
 
 const MAX_SIZE = 20,
   MIN_SIZE = 20;
 
-module.exports = async (req, res) => {
+async function main(req, res) {
   try {
     const token = req?.headers['x-mnvaccinetracker-key'];
 
@@ -45,9 +46,10 @@ module.exports = async (req, res) => {
 
     // Fetch data from ikon
     console.log('Fetching data from ikon');
-    const json = await (await fetch(IKON_VACCINE_API_URL)).json();
+    const ikonResponse = await (await fetch(IKON_VACCINE_API_URL)).json();
+    const { data: eMongoliaData } = await (await fetch(E_MONGOLIA_API_URL)).json();
 
-    const { target, completed } = json;
+    const { target, completed } = ikonResponse;
 
     // Build a status text
     let status = '';
@@ -56,10 +58,16 @@ module.exports = async (req, res) => {
       // Yay, fully vaccinated.
       status = 'We, Mongolians, have reached the target of fully vaccinated people. 🎉🥳👏';
     } else {
+      // E-Mongolia data
+      status += `Date: ${eMongoliaData?.createdDateText}\n`;
+      status += `Today: vaccinated ${
+        eMongoliaData?.vaccinatedDose1 ?? 0 + eMongoliaData?.vaccinatedDose2 ?? 0
+      }, cases: ${eMongoliaData?.confirmed}, dead: ${eMongoliaData?.deadCovid}`;
+      status += '\nTotal vaccination rate:\n';
       DOSES.forEach((dose) => {
-        let percentage = (json[dose] / target) * 100;
+        let percentage = (ikonResponse[dose] / target) * 100;
         let bar = makeBar(percentage).padEnd(20, BAR_STYLE[0]);
-        status += `${EMOJIS[dose]} ${bar} ${percentage.toFixed(1)}%\n`;
+        status += `${EMOJIS[dose]}  ${bar} ${percentage.toFixed(1)}%\n`;
       });
     }
 
@@ -80,8 +88,9 @@ module.exports = async (req, res) => {
     console.log(e.mesage);
     res.status(400).end(e.message);
   }
-};
+}
 
+module.exports = main;
 // Taken from https://github.com/Changaco/unicode-progress-bars/blob/master/generator.html#L60
 function makeBar(p) {
   let d,
