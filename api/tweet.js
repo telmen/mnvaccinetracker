@@ -60,7 +60,7 @@ async function main(req, res) {
     } else {
       // E-Mongolia data
       status += `Date: ${eMongoliaData?.createdDateText}\n`;
-      status += `Today: vaccinated ${
+      status += `Today vaccinated ${
         eMongoliaData?.vaccinatedDose1 ?? 0 + eMongoliaData?.vaccinatedDose2 ?? 0
       }, cases: ${eMongoliaData?.confirmed}, dead: ${eMongoliaData?.deadCovid}`;
       status += '\nTotal vaccination rate:\n';
